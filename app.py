@@ -28,7 +28,7 @@ def demo():
 		session['oauth_state'] =  state
 		return redirect(authorization_url)
 	except Exception as e:
-		return render_template('err.html',str(e))
+		return render_template('err.html', err=str(e))
 
 
 
