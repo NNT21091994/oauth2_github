@@ -9,6 +9,7 @@
 alert(url);
                url=url+"/view";
 		alert(url);
+		window.location=url;
             }
          
       </script>

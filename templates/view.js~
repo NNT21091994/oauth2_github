@@ -7,8 +7,8 @@
 		alert(window.location);
 		url=window.location;
 alert(url);
-               window.location=url+"/view";
-		alert(window.location)
+               url=url+"/view";
+		alert(url);
             }
          
       </script>
