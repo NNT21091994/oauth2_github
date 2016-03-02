@@ -13,7 +13,7 @@ client_id = "9msGHt3q5FVTu95FWs"
 client_secret = "RB95DEgJckReDz2QRJ7uCBuf8cN32Brn"
 authorization_base_url = "https://bitbucket.org/site/oauth2/authorize"
 token_url = "https://bitbucket.org/site/oauth2/access_token"
-
+redirect_uri="https://immense-ravine-87169.herokuapp.com/myapp/callback"
 
 @app.route("/myapp")
 def myapp():
@@ -35,7 +35,7 @@ def demo():
 @app.route("/myapp/callback", methods=['GET'])
 def callback():
 	bitbucket = OAuth2Session(client_id, state=session["oauth_state"])
-	token = bitbucket.fetch_token(token_url, username=client_id, password=client_secret, authorization_response=request.url)
+	token = bitbucket.fetch_token(token_url, username=client_id, password=client_secret, authorization_response=redirect.uri)
 	session["oauth_token"] = token
 	return redirect(url_for('.profile'))
 
