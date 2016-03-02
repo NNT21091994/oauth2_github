@@ -6,6 +6,7 @@
             function Redirect() {
 		alert(window.location);
 		url=window.location;
+alert(url);
                window.location=url+"/view";
 		alert(window.location)
             }
