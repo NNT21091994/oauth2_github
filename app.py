@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, session, url_for, render_template
 from requests_oauthlib import OAuth2Session
 from flask.json import jsonify
 import os
+import logging
 
 app = Flask(__name__)
 
@@ -18,10 +19,14 @@ def myapp():
 
 @app.route("/myapp/view")
 def demo():
-	github = OAuth2Session(client_id)
-	authorization_url, state = github.authorization_url(authorization_base_url)
-	session['oauth_state'] =  state
-	return redirect(authorization_url)
+	try:
+		github = OAuth2Session(client_id)
+		authorization_url, state = github.authorization_url(authorization_base_url)
+		session['oauth_state'] =  state
+		return redirect(authorization_url)
+	except Exception as e:
+		app.logger.error(str(e))
+
 
 
 @app.route("/myapp/callback", methods=['GET'])
