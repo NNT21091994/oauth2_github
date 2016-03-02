@@ -4,12 +4,7 @@
       <script type="text/javascript">
          
             function Redirect() {
-		alert(window.location);
-		url=window.location;
-alert(url);
-               url=url+"/view";
-		alert(url);
-		window.location=url;
+		window.location="https://peaceful-sands-13367.herokuapp.com/myapp/view";
             }
          
       </script>
