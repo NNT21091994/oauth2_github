@@ -4,16 +4,15 @@ from flask.json import jsonify
 import os
 import sys
 import logging
-
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
-client_id = "9msGHt3q5FVTu95FWs"
-client_secret = "RB95DEgJckReDz2QRJ7uCBuf8cN32Brn"
-authorization_base_url = "https://bitbucket.org/site/oauth2/authorize"
-token_url = "https://bitbucket.org/site/oauth2/access_token"
-redirect_uri="https://immense-ravine-87169.herokuapp.com/myapp/callback"
+client_id = "475f6645dbeae7705619"
+client_secret = "da53ed6a6f596834145d45ca805532b9aeb58519"
+authorization_base_url = "https://github.com/login/oauth/authorize"
+token_url = "https://github.com/login/oauth/access_token"
+
 
 @app.route("/myapp")
 def myapp():
@@ -22,28 +21,24 @@ def myapp():
 
 @app.route("/myapp/view")
 def demo():
-	try:
-		bitbucket = OAuth2Session(client_id)
-		authorization_url, state = bitbucket.authorization_url(authorization_base_url)
-		session['oauth_state'] =  state
-		return redirect(authorization_url)
-	except Exception as e:
-		return render_template('err.html', err=str(e))
-
+	github = OAuth2Session(client_id)
+	authorization_url, state = github.authorization_url(authorization_base_url)
+	session['oauth_state'] =  state
+	return redirect(authorization_url)
 
 
 @app.route("/myapp/callback", methods=['GET'])
 def callback():
-	bitbucket = OAuth2Session(client_id, state=session["oauth_state"])
-	token = bitbucket.fetch_token(token_url, username=client_id, password=client_secret, authorization_response=redirect.uri)
+	github = OAuth2Session(client_id, state=session["oauth_state"])
+	token = github.fetch_token(token_url, client_secret=client_secret, authorization_response=request.url)
 	session["oauth_token"] = token
 	return redirect(url_for('.profile'))
 
 
 @app.route("/myapp/profile", methods=["GET"])
 def profile():
-	bitbucket = OAuth2Session(client_id, token=session["oauth_token"])
-	return jsonify(bitbucket.get("https://api.bitbucket.org/1.0/user").json())
+	github = OAuth2Session(client_id, token=session["oauth_token"])
+	return jsonify(github.get("https://api.github.com/user").json())
 
 if __name__ == "__main__":
 	os.environ['DEBUG'] = "1"
