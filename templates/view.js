@@ -15,7 +15,7 @@
       <p>Click the following button, you will be redirected to home page.</p>
       
       <form>
-         <input type="button" value="Log in with github" onclick="Redirect();" />
+         <input type="button" value="Log in with bitbucket" onclick="Redirect();" />
       </form>
       
    </body>
