@@ -13,7 +13,6 @@ client_secret = "da53ed6a6f596834145d45ca805532b9aeb58519"
 authorization_base_url = "https://github.com/login/oauth/authorize"
 token_url = "https://github.com/login/oauth/access_token"
 
-
 @app.route("/myapp")
 def myapp():
 	return render_template('view.js')
@@ -27,7 +26,7 @@ def demo():
 		session['oauth_state'] =  state
 		return redirect(authorization_url)
 	except Exception as e:
-	
+		traceback.print_exc(file=sys.stdout)
 	   return render_template('err.html',err=str(e))
 	
 
