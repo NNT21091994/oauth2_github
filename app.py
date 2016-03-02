@@ -20,7 +20,7 @@ def myapp():
 @app.route("/myapp/view")
 def demo():
 	try:
-		return render_template('err.html',"success")
+		return render_template('err.html',success="success")
 		#github = OAuth2Session(client_id)
 		#authorization_url, state = github.authorization_url(authorization_base_url)
 		#session['oauth_state'] =  state
