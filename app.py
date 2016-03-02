@@ -28,7 +28,8 @@ def demo():
     github = OAuth2Session(client_id)
     authorization_url, state = github.authorization_url(authorization_base_url)
     session['oauth_state'] = state
-    return redirect(authorization_url)
+    return render_template('err.html',err=code)
+    #return redirect(authorization_url)
    except Exception as e:
     traceback.print_exc(file=sys.stdout)
     return render_template('err.html', err=str(e))
@@ -37,9 +38,8 @@ def demo():
 @app.route("/myapp/callback", methods=['GET'])
 def callback():
 	github = OAuth2Session(client_id, state=session.get('oauth_state'))
-	token = github.fetch_token(token_url, username=client_id, password=client_secret, code=redirect_url)
+	token = github.fetch_token(token_url, client_id=client_id, client_secret=client_secret, code=redirect_url)
 	session['oauth_token'] = token
-	github=OAuth2Session(client_id, token=session.get('oauth_token'))
 	return jsonify(github.get('https://api.github.com/user').json())
 	#return redirect(url_for('.profile'))
 
