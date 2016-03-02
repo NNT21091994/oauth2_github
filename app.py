@@ -5,7 +5,7 @@ import os
 import traceback
 import sys
 import logging
-app = Flask(__name__)
+#sess=Session()
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
@@ -46,5 +46,5 @@ def profile():
 
 if __name__ == "__main__":
 	os.environ['DEBUG'] = "1"
-	app.secret_key = os.urandom(24)
+	app.secret_key = os.urandom(43)
 	app.run(debug=True) 
