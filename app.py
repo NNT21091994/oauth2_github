@@ -16,7 +16,7 @@ def myapp():
 	return render_template('view.js')
 
 
-@app.route("/view")
+@app.route("/myapp/view")
 def demo():
 	github = OAuth2Session(client_id)
 	authorization_url, state = github.authorization_url(authorization_base_url)
@@ -24,7 +24,7 @@ def demo():
 	return redirect(authorization_url)
 
 
-@app.route("/callback", methods=['GET'])
+@app.route("/myapp/callback", methods=['GET'])
 def callback():
 	github = OAuth2Session(client_id, state=session["oauth_state"])
 	token = github.fetch_token(token_url, client_secret=client_secret, authorization_response=request.url)
@@ -32,7 +32,7 @@ def callback():
 	return redirect(url_for('.profile'))
 
 
-@app.route("/profile", methods=["GET"])
+@app.route("/myapp/profile", methods=["GET"])
 def profile():
 	github = OAuth2Session(client_id, token=session["oauth_token"])
 	return jsonify(github.get("https://api.github.com/user").json())

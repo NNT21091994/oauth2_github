@@ -5,7 +5,7 @@
          <!--
             function Redirect() {
 		alert(window.location);
-               window.location=window.location+"/view";
+               window.location=window.location+"view";
             }
          //-->
       </script>
