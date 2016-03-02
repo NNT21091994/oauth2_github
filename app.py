@@ -15,6 +15,8 @@ client_secret = "da53ed6a6f596834145d45ca805532b9aeb58519"
 authorization_base_url = "https://github.com/login/oauth/authorize"
 token_url = "https://github.com/login/oauth/access_token"
 redirect_url="https://immense-ravine-87169.herokuapp.com/myapp/callback"
+
+
 @app.route("/myapp")
 def myapp():
 	return render_template('view.js')
@@ -22,27 +24,23 @@ def myapp():
 
 @app.route("/myapp/view")
 def demo():
-	try:
-		github = OAuth2Session(client_id)
-		authorization_url, state = github.authorization_url(authorization_base_url)
-		session['oauth_state'] =  state
-		#return render_template('err.html',err=state)
-	#	return redirect(authorization_url)
-		return redirect(url_for('.xyz'))
-	except Exception as e:
-		traceback.print_exc(file=sys.stdout)
-		return render_template('err.html',err=str(e))
+   try:
+    github = OAuth2Session(client_id)
+    authorization_url, state = github.authorization_url(authorization_base_url)
+    session['oauth_state'] = state
+    return redirect(authorization_url)
+   except Exception as e:
+    traceback.print_exc(file=sys.stdout)
+    return render_template('err.html', err=str(e))
 
-@app.route("/myapp/xyz")
-def xyz():
-	return render_template('err.html',err="xyz")
+
 @app.route("/myapp/callback", methods=['GET'])
 def callback():
 	github = OAuth2Session(client_id, state=session['oauth_state'])
-	#return render_template('err.html',err=state)
-	token = github.fetch_token(token_url, client_secret=client_secret, authorization_response=redirect_url)
+	token = github.fetch_token(token_url, client_secret=client_secret, authorization_response=request.url)
 	session["oauth_token"] = token
-	return redirect(url_for('.profile'))
+	return jsonify(github.get('https://api.github.com/user').json())
+	#return redirect(url_for('.profile'))
 
 
 @app.route("/myapp/profile", methods=["GET"])
