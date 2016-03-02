@@ -16,8 +16,6 @@ MarkupSafe==0.23
 MySQL-python==1.2.5
 Pillow==2.3.0
 PyOpenGL==3.0.2
-PyYAML==3.11
-Pyrex==0.9.8.5
 SQLAlchemy==1.0.8
 Tempita==0.5.2
 Twisted-Core==13.2.0
