@@ -23,7 +23,8 @@ def demo():
 		github = OAuth2Session(client_id)
 		authorization_url, state = github.authorization_url(authorization_base_url)
 		session['oauth_state'] =  state
-		return redirect(authorization_url)
+		#return redirect(authorization_url)
+		return render_template('err.html',"hu")
 	except Exception as e:
 		return render_template('err.html',str(e))
 
