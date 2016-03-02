@@ -2,12 +2,14 @@
    <head>
       
       <script type="text/javascript">
-         <!--
+         
             function Redirect() {
 		alert(window.location);
-               window.location=window.location+"/view";
+		url=window.location;
+               window.location=url+"/view";
+		alert(window.location)
             }
-         //-->
+         
       </script>
       
    </head>
