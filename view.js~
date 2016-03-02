@@ -4,7 +4,6 @@
       <script type="text/javascript">
          <!--
             function Redirect() {
-		alert(window.location);
                window.location=window.location.href+"view";
             }
          //-->
