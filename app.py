@@ -27,8 +27,7 @@ def demo():
 		return redirect(authorization_url)
 	except Exception as e:
 		traceback.print_exc(file=sys.stdout)
-	   return render_template('err.html',err=str(e))
-	
+		return render_template('err.html',err=str(e))
 
 
 @app.route("/myapp/callback", methods=['GET'])
