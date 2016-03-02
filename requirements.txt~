@@ -11,13 +11,8 @@ Flask-Testing==0.4.2
 Flask-WTF==0.12
 GitPython==1.0.1
 Jinja2==2.8
-Mako==1.0.2
-MarkupSafe==0.23
 MySQL-python==1.2.5
-Pillow==2.3.0
-PyOpenGL==3.0.2
 SQLAlchemy==1.0.8
-Tempita==0.5.2
 WTForms==2.0.2
 Werkzeug==0.10.4
 certifi==2015.9.6.2
@@ -26,5 +21,5 @@ html5lib==0.999
 httplib2==0.8
 oauthlib==1.0.3
 requests-oauthlib==0.5.0
-salt==2015.5.3
+
 
