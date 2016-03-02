@@ -20,9 +20,10 @@ def myapp():
 @app.route("/myapp/view")
 def demo():
 	try:
+		#return render_template('err.html',success="success")
+		bitbucket = OAuth2Session(client_id)
 		return render_template('err.html',success="success")
-		"""bitbucket = OAuth2Session(client_id)
-		authorization_url, state = bitbucket.authorization_url(authorization_base_url)
+		"""authorization_url, state = bitbucket.authorization_url(authorization_base_url)
 		session['oauth_state'] =  state
 		return redirect(authorization_url)
 		#return render_template('err.html',"hu")"""
