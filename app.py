@@ -25,7 +25,7 @@ def myapp():
 def demo():
 	try:
 		github = OAuth2Session(client_id)
-		return render_template('err.html',err=session["hello"]
+		return render_template('err.html',err=session["hello"])
 		"""authorization_url, state = github.authorization_url(authorization_base_url)
 		session['oauth_state'] =  state
 		return redirect(authorization_url)"""
