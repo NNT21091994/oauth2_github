@@ -2,9 +2,12 @@ from flask import Flask, request, redirect, session, url_for, render_template
 from requests_oauthlib import OAuth2Session
 from flask.json import jsonify
 import os
+import sys
 import logging
 
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 client_id = "9msGHt3q5FVTu95FWs"
 client_secret = "RB95DEgJckReDz2QRJ7uCBuf8cN32Brn"
@@ -20,13 +23,10 @@ def myapp():
 @app.route("/myapp/view")
 def demo():
 	try:
-		#return render_template('err.html',success="success")
 		bitbucket = OAuth2Session(client_id)
-		#return render_template('err.html',success="success")
 		authorization_url, state = bitbucket.authorization_url(authorization_base_url)
 		session['oauth_state'] =  state
 		return redirect(authorization_url)
-		#return render_template('err.html',"hu")"""
 	except Exception as e:
 		return render_template('err.html',str(e))
 
