@@ -26,10 +26,10 @@ def myapp():
 def demo():
    try:
     github = OAuth2Session(client_id)
-    authorization_url,code, state = github.authorization_url(authorization_base_url)
+    authorization_url, state = github.authorization_url(authorization_base_url)
     session['oauth_state'] = state
-    return render_template('err.html',err=authorization_url)
-    #return redirect(authorization_url)
+    #return render_template('err.html',err=authorization_url)
+    return redirect(authorization_url)
    except Exception as e:
     traceback.print_exc(file=sys.stdout)
     return render_template('err.html', err=str(e))
