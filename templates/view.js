@@ -4,7 +4,8 @@
       <script type="text/javascript">
          
             function Redirect() {
-		window.location="https://immense-ravine-87169.herokuapp.com/myapp/view";
+		
+		window.location=window.location+"/view";
             }
          
       </script>
