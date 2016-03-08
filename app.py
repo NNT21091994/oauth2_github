@@ -17,12 +17,12 @@ token_url = "https://github.com/login/oauth/access_token"
 redirect_url = "https://immense-ravine-87169.herokuapp.com/myapp/callback"
 
 
-@app.route("/myapp")
+@app.route("/")
 def myapp():
 	return render_template('view.js')
 
 
-@app.route("/myapp/view")
+@app.route("/view")
 def demo():
    try:
     github = OAuth2Session(client_id)
@@ -35,7 +35,7 @@ def demo():
     return render_template('err.html', err=str(e))
 
 
-@app.route("/myapp/callback", methods=['GET'])
+@app.route("/callback", methods=['GET'])
 def callback():
 	github = OAuth2Session(client_id, state=session.get('oauth_state'))
 	url=request.url.replace("http://","https://")
