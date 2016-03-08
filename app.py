@@ -38,7 +38,10 @@ def demo():
 @app.route("/myapp/callback", methods=['GET'])
 def callback():
 	github = OAuth2Session(client_id, state=session.get('oauth_state'))
-	return render_template('err.html',err=request.url)
+	url=request.url.replace("http://","https://")
+	return render_template('err.html',err=url)
+
+
 	#token = github.fetch_token(token_url, username=client_id, password=client_secret, authorization_response=request.url)
 	
 	#session['oauth_token'] = token
