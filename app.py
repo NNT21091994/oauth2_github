@@ -14,7 +14,7 @@ client_id = "475f6645dbeae7705619"
 client_secret = "da53ed6a6f596834145d45ca805532b9aeb58519"
 authorization_base_url = "https://github.com/login/oauth/authorize"
 token_url = "https://github.com/login/oauth/access_token"
-redirect_url="https://immense-ravine-87169.herokuapp.com/myapp/callback"
+redirect_url = "https://immense-ravine-87169.herokuapp.com/myapp/callback"
 
 
 @app.route("/myapp")
@@ -39,9 +39,10 @@ def demo():
 def callback():
 	github = OAuth2Session(client_id, state=session.get('oauth_state'))
 	token = github.fetch_token(token_url, username=client_id, password=client_secret, authorization_response=request.url)
-	session['oauth_token'] = token
+	return render_template('err.html',err=authorization_response)
+	#session['oauth_token'] = token
 	#return jsonify(github.get('https://api.github.com/user').json())
-	return redirect(url_for('.profile'))
+	#return redirect(url_for('.profile'))
 
 
 @app.route("/myapp/profile", methods=["GET"])
@@ -51,4 +52,4 @@ def profile():
 
 if __name__ == "__main__":
 	os.environ['DEBUG'] = "1"
-	app.run(debug=True) 
+	app.run(debug=True)
