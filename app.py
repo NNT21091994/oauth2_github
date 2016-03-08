@@ -45,8 +45,8 @@ def callback():
 	token = github.fetch_token(token_url, username=client_id, password=client_secret, authorization_response=url)
 	
 	session['oauth_token'] = token
-	#return jsonify(github.get('https://api.github.com/user').json())
-	return redirect(url_for('.profile'))
+	return jsonify(github.get('https://api.github.com/user').json())
+	#return redirect(url_for('.profile'))
 
 
 @app.route("/myapp/profile", methods=["GET"])
