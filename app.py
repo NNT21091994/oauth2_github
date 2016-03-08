@@ -14,7 +14,7 @@ client_id = "475f6645dbeae7705619"
 client_secret = "da53ed6a6f596834145d45ca805532b9aeb58519"
 authorization_base_url = "https://github.com/login/oauth/authorize"
 token_url = "https://github.com/login/oauth/access_token"
-redirect_url="https://immense-ravine-87169.herokuapp.com/myapp/callback?code=90759aded578ba9cd115&state=OoeTCEWooma9vZv6rn9RdREO6QNzaX"
+redirect_url="https://immense-ravine-87169.herokuapp.com/myapp/callback"
 
 
 @app.route("/myapp")
